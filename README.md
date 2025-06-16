@@ -21,7 +21,10 @@ pipx install git+https://github.com/gthesheep/tap-pinterest-ads.git
 - **refresh_token**: Refresh token obtained from the OAuth user flow
 - **start_date**: Start date to collect ad analytics from
 - **is_backfilled**: Set to True once backfilled in order to reduce API calls per day
-- **attribution_window**: Attribution window for analytics (e.g., '1d_click_1d_view'). See Pinterest API docs for valid values.
+- **click_window_days**: Number of days to use as the conversion attribution window for a pin click action (default: 30)
+- **engagement_window_days**: Number of days to use as the conversion attribution window for an engagement action (default: 30)
+- **view_window_days**: Number of days to use as the conversion attribution window for a view action (default: 1)
+- **conversion_report_time**: The date by which the conversion metrics will be reported. Can be either TIME_OF_AD_ACTION or TIME_OF_CONVERSION (default: TIME_OF_AD_ACTION)
 
 A full list of supported settings and capabilities for this
 tap is available by running:

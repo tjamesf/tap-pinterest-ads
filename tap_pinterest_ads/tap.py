@@ -59,10 +59,32 @@ class TapPinterestAds(Tap):
             description="Set to True once backfilled in order to reduce API calls per day"
         ),
         th.Property(
-            "attribution_window",
+            "click_window_days",
+            th.IntegerType,
+            required=False,
+            default=30,
+            description="Number of days to use as the conversion attribution window for a pin click action. Applies to Pinterest Tag conversion metrics."
+        ),
+        th.Property(
+            "engagement_window_days",
+            th.IntegerType,
+            required=False,
+            default=30,
+            description="Number of days to use as the conversion attribution window for an engagement action. Engagements include saves, closeups, link clicks, and carousel card swipes."
+        ),
+        th.Property(
+            "view_window_days",
+            th.IntegerType,
+            required=False,
+            default=1,
+            description="Number of days to use as the conversion attribution window for a view action."
+        ),
+        th.Property(
+            "conversion_report_time",
             th.StringType,
             required=False,
-            description="Attribution window for analytics (e.g., '1d_click_1d_view'). See Pinterest API docs for valid values."
+            default="TIME_OF_AD_ACTION",
+            description="The date by which the conversion metrics will be reported. Can be either TIME_OF_AD_ACTION or TIME_OF_CONVERSION."
         ),
     ).to_dict()
 

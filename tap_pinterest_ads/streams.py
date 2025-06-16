@@ -259,8 +259,14 @@ class AdAnalyticsStream(PinterestStream):
             'page_size': 100,
             'ad_ids': context["ad_id"],
         }
-        if self.config.get("attribution_window"):
-            params["attribution_window"] = self.config["attribution_window"]
+        if self.config.get("click_window_days"):
+            params["click_window_days"] = self.config["click_window_days"]
+        if self.config.get("engagement_window_days"):
+            params["engagement_window_days"] = self.config["engagement_window_days"]
+        if self.config.get("view_window_days"):
+            params["view_window_days"] = self.config["view_window_days"]
+        if self.config.get("conversion_report_time"):
+            params["conversion_report_time"] = self.config["conversion_report_time"]
         self.logger.debug(params)
         return params
 
@@ -355,8 +361,14 @@ class AccountAnalyticsStream(PinterestStream):
             'columns': ','.join(ACCOUNT_ANALYTICS_COLUMNS),
             'page_size': 100,
         }
-        if self.config.get("attribution_window"):
-            params["attribution_window"] = self.config["attribution_window"]
+        if self.config.get("click_window_days"):
+            params["click_window_days"] = self.config["click_window_days"]
+        if self.config.get("engagement_window_days"):
+            params["engagement_window_days"] = self.config["engagement_window_days"]
+        if self.config.get("view_window_days"):
+            params["view_window_days"] = self.config["view_window_days"]
+        if self.config.get("conversion_report_time"):
+            params["conversion_report_time"] = self.config["conversion_report_time"]
         self.logger.debug(params)
         return params
     
