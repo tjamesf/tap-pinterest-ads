@@ -49,6 +49,30 @@ class AdAccountStream(PinterestStream):
             "ad_account_id": record["id"],
         }
 
+    def get_records(self, context: Optional[dict] = None) -> Iterable[Dict[str, Any]]:
+        """Return a generator of row-type dictionary objects.
+        Each row emitted should be a dictionary of property names to their values.
+        """
+        account_ids_str = self.config.get("account_ids")
+        if account_ids_str:
+            # Split the comma-separated string and strip whitespace
+            account_ids = {id.strip() for id in account_ids_str.split(",") if id.strip()}
+            # Track which accounts we've found
+            found_accounts = set()
+            
+        for record in super().get_records(context):
+            if account_ids_str:
+                if record["id"] in account_ids:
+                    found_accounts.add(record["id"])
+                    yield record
+            else:
+                yield record
+        
+        # After processing all records, check if we found all requested accounts
+        if account_ids_str and found_accounts != account_ids:
+            missing_accounts = account_ids - found_accounts
+            self.logger.warning(f"Some requested accounts were not found: {missing_accounts}")
+
 
 class CampaignStream(PinterestStream):
     name = 'campaigns'

@@ -59,6 +59,12 @@ class TapPinterestAds(Tap):
             description="Set to True once backfilled in order to reduce API calls per day"
         ),
         th.Property(
+            "account_ids",
+            th.StringType,
+            required=False,
+            description="Optional comma-separated list of account IDs to sync. If not provided, all accessible accounts will be synced."
+        ),
+        th.Property(
             "click_window_days",
             th.IntegerType,
             required=False,
