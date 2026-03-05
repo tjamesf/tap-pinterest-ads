@@ -58,7 +58,7 @@ class PinterestStream(RESTStream):
     ) -> Dict[str, Any]:
         """Return a dictionary of values to be used in URL parameterization."""
         params: dict = {}
-        params["page_size"] = 100
+        params["page_size"] = 250
         if next_page_token:
             params["bookmark"] = next_page_token
         return params
